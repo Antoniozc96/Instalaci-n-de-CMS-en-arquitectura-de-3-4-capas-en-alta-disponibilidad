@@ -13,92 +13,50 @@
 
 # Every Vagrant development environment requires a box. You can search for
 # boxes at https://vagrantcloud.com/search.
-
 Vagrant.configure("2") do |config|
+  # The most common configuration options are documented and commented below.
+  # For a complete reference, please see the online documentation at
+  # https://docs.vagrantup.com.
 
+  # Every Vagrant development environment requires a box. You can search for
+  # boxes at https://vagrantcloud.com/search.
   config.vm.box = "debian/bullseye64"
 
-
- # Servidor Balanceador
-
-  config.vm.define "balanceador" do |bal|
-    bal.vm.hostname = "balanceador"
-    # Red aislada
-    bal.vm.network "private_network", ip: "10.0.10.10", virtualbox_intnet: "red10"
-    # Nuestro puerto de entrada
-    bal.vm.network "forwarded_port", guest: 80, host:9090
-    bal.vm.provision "shell", path: "balanceador.sh"
-    # Para solucionar problemas con los DNS:
-    bal.vm.provider "virtualbox" do |vb|
-      vb.customize ['modifyvm', :id, '--natdns', 'on']
-    end
+  config.vm.define "BalanceadorzancadaAntonio" do |app|
+    app.vm.hostname = "BalanceadorzancadaAntonio"
+    app.vm.network "public_network" 
+    app.vm.network "private_network", ip: "192.168.10.2", virtualbox_intnet: "redBalanceador"
+    app.vm.provision "shell", path: "balanceador.sh"
   end
 
- # SeverNFS
-  config.vm.define "serverNFS" do |nfs|
-    nfs.vm.hostname = "serverNFS"
-    nfs.vm.network "private_network", ip: "172.16.0.100", virtualbox_intnet: "red172"
-    nfs.vm.provision "shell", path: "nfs.sh"
-    nfs.vm.provider "virtualbox" do |vb|
-      vb.customize ['modifyvm', :id, '--natdns', 'on']
-    end
+  config.vm.define "NFSzancadaAntonio" do |app|
+    app.vm.hostname = "NFSzancadaAntonio"
+    app.vm.network "private_network", ip: "192.168.10.12", virtualbox_intnet: "redBalanceador"
+    app.vm.network "private_network", ip: "192.168.30.13", virtualbox_intnet: "redNFS"    
+    app.vm.provision "shell", path: "nfs.sh"
   end
 
- # Servidor Web1
-  config.vm.define "serverweb1" do |sw1|
-    sw1.vm.hostname = "serverweb1"
-    sw1.vm.network "private_network", ip: "10.0.10.101", virtualbox_intnet: "red10"
-    sw1.vm.network "private_network", ip: "172.16.0.101", virtualbox_intnet: "red172"
-    sw1.vm.provision "shell", path: "serverweb1.sh"
-    sw1.vm.provider "virtualbox" do |vb|
-      vb.customize ['modifyvm', :id, '--natdns', 'on']
-    end
+  config.vm.define "serverweb1zancadaAntonio" do |app|
+    app.vm.hostname = "serverweb1zancadaAntonio"
+    app.vm.network "private_network", ip: "192.168.10.10", virtualbox_intnet: "redBalanceador"
+    app.vm.network "private_network", ip: "192.168.30.11", virtualbox_intnet: "redNFS"
+    app.vm.provision "shell", path: "serverweb.sh"
   end
 
-# Servidor Web2
-
-  config.vm.define "serverweb2" do |sw2|
-    sw2.vm.hostname = "serverweb2"
-    sw2.vm.network "private_network", ip: "10.0.10.102", virtualbox_intnet: "red10"
-    sw2.vm.network "private_network", ip: "172.16.0.102", virtualbox_intnet: "red172"
-    sw2.vm.provision "shell", path: "serverweb2.sh"
-    sw2.vm.provider "virtualbox" do |vb|
-      vb.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
-    end
+  config.vm.define "serverweb2zancadaAntonio" do |app|
+    app.vm.hostname = "serverweb2zancadaAntonio"
+    app.vm.network "private_network", ip: "192.168.56.11", virtualbox_intnet: "redBalanceador"  
+    app.vm.network "private_network", ip: "192.168.30.12", virtualbox_intnet: "redNFS"
+    app.vm.provision "shell", path: "serverweb.sh"
   end
 
- # Servidor Proxy
-  config.vm.define "proxyBBDD" do |pbd|
-    pbd.vm.hostname = "proxyBBDD"
-    pbd.vm.network "private_network", ip: "172.16.0.200", virtualbox_intnet: "red172"
-    pbd.vm.network "private_network", ip: "192.168.20.200", virtualbox_intnet: "red192"
-    pbd.vm.provision "shell", path: "proxy.sh"
-    pbd.vm.provider "virtualbox" do |vb|
-      vb.customize ['modifyvm', :id, '--natdns', 'on']
-    end
+  config.vm.define "BDzancadaAntonio" do |app|
+    app.vm.hostname = "BDzancadaAntonio"
+    app.vm.network "private_network", ip: "192.168.30.10", virtualbox_intnet: "redNFS"
+    app.vm.provision "shell", path: "basedatos.sh"
   end
 
-  # Servidor Base de Datos 1
-  config.vm.define "serverdatos1" do |sd1|
-    sd1.vm.hostname = "serverdatos1"
-    sd1.vm.network "private_network", ip: "192.168.20.201", virtualbox_intnet: "red192"
-    #sd1.vm.provision "shell", path: "basedatos1.sh"
-    sd1.vm.provider "virtualbox" do |vb|
-      vb.customize ['modifyvm', :id, '--natdns', 'on']
-    end
-  end
-
-  # Servidor Base de Datos
-  config.vm.define "serverdatos2" do |sd2|
-    sd2.vm.hostname = "serverdatos2"
-    sd2.vm.network "private_network", ip: "192.168.20.202", virtualbox_intnet: "red192"
-    sd2.vm.provision "shell", path: "basedatos2.sh""
-    sd2.vm.provider "virtualbox" do |vb|
-      vb.customize ['modifyvm', :id, '--natdn', 'on']
-    end
-  end
-
-end
+ end
 
   
 
