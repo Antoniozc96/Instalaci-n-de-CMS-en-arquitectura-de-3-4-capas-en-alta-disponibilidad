@@ -92,5 +92,9 @@ Para implementar la infraestructura, se necesitan los siguientes elementos:
 #RESULTADO FINAL
 ![imagen](https://github.com/user-attachments/assets/f0f9b986-55d3-4b71-9ace-c0579304ce72)
 
+# Después de poner las credenciales: 
+![imagen](https://github.com/user-attachments/assets/d7bbb75c-1aad-48c7-945e-b00a2105917b)
+
+
 
 
