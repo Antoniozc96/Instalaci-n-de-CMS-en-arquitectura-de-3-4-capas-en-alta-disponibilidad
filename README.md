@@ -49,8 +49,11 @@ A continuación se muestra el direccionamiento IP elegido para las máquinas en 
 
 - **Servidor de Base de Datos 2:**
   - **Red 1 (Red de Base de Datos):** 192.168.20.202 (Almacenamiento de datos)
+
+  
  
 ![practica4](https://github.com/user-attachments/assets/d1cfd4c0-a6db-4859-b946-1356f4160150)
+
 
 # Capa 1: Balanceador de Carga
 El balanceador de carga distribuye las solicitudes de los usuarios entre los servidores web (Capa 2), garantizando que la carga se reparta de manera equitativa. Su objetivo principal es mejorar la disponibilidad y el rendimiento, asegurando que ningún servidor se sobrecargue, y permitiendo que el sistema maneje grandes volúmenes de tráfico de manera eficiente.
