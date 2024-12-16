@@ -10,5 +10,33 @@ La tercera capa estará dedicada a otro balanceador de carga que distribuirá la
 
 Finalmente, en la cuarta capa se encontrará un clúster de bases de datos, compuesto por dos servidores que albergarán la base de datos de Joomla. Estos servidores se configuran para trabajar en conjunto, con el objetivo de ofrecer redundancia y evitar cualquier punto único de fallo. Así, si uno de los servidores de base de datos falla, el otro puede continuar proporcionando los datos necesarios para el funcionamiento del sistema.
 
+# Índice
+
+1. [Introducción](#introducción)
+2. [Capa 1: Balanceador de Carga](#capa-1-balanceador-de-carga)
+3. [Capa 2: Servidores Web y PHP](#capa-2-servidores-web-y-php)
+4. [Capa 3: Balanceador de Carga para Bases de Datos](#capa-3-balanceador-de-carga-para-bases-de-datos)
+5. [Capa 4: Clúster de Bases de Datos](#capa-4-clúster-de-bases-de-datos)
+6. [Conclusión](#conclusión)
+
+# Introducción
+Aquí empieza la introducción de tu documento.
+
+# Capa 1: Balanceador de Carga
+Detalles sobre el balanceador de carga.
+
+# Capa 2: Servidores Web y PHP
+Detalles sobre los servidores web y PHP.
+
+# Capa 3: Balanceador de Carga para Bases de Datos
+Detalles sobre el balanceador de carga de bases de datos.
+
+# Capa 4: Clúster de Bases de Datos
+Detalles sobre el clúster de bases de datos.
+
+# Conclusión
+Resumen y conclusiones de la práctica.
+
+
 Es importante destacar que todas las máquinas dentro de esta infraestructura tendrán restringida la conexión a su propia red, asegurando así que las comunicaciones sean seguras y controladas. Sin embargo, el balanceador de carga en la capa 1 tendrá acceso a Internet para recibir las solicitudes externas y distribuirlas a los servidores adecuados.
-Este diseño de infraestructura proporciona una solución robusta y escalable para el despliegue de Joomla, permitiendo gestionar el tráfico de manera eficiente, asegurar la alta disponibilidad del sistema y facilitar su mantenimiento a largo plazo
+Este diseño de infraestructura proporciona una solución robusta y escalable para el despliegue de Joomla, permitiendo gestionar el tráfico de manera eficiente, asegurar la alta disponibilidad del sistema y facilitar su mantenimiento a largo plazo.
