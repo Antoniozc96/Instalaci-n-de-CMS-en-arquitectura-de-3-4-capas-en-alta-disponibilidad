@@ -16,7 +16,7 @@ Finalmente, en la cuarta capa se encontrará un clúster de bases de datos, comp
 2. [Capa 1: Balanceador de Carga](#capa-1-balanceador-de-carga)
 3. [Capa 2: Servidores Web y PHP](#capa-2-servidores-web-y-php)
 4. [Capa 3: Balanceador de Carga para Bases de Datos](#capa-3-balanceador-de-carga-para-bases-de-datos)
-5. [Capa 4: Clúster de Bases de Datos](#capa-4-clúster-de-bases-de-datos)
+5. [Capa 4: Servidores Bases de Datos](#capa-4-servidores-de-bases-de-datos)
 6. [Conclusión](#conclusión)
 
 # Introducción
@@ -52,16 +52,16 @@ A continuación se muestra el direccionamiento IP elegido para las máquinas en 
 
 
 # Capa 1: Balanceador de Carga
-Detalles sobre el balanceador de carga.
+El balanceador de carga distribuye las solicitudes de los usuarios entre los servidores web (Capa 2), garantizando que la carga se reparta de manera equitativa. Su objetivo principal es mejorar la disponibilidad y el rendimiento, asegurando que ningún servidor se sobrecargue, y permitiendo que el sistema maneje grandes volúmenes de tráfico de manera eficiente.
 
 # Capa 2: Servidores Web y PHP
-Detalles sobre los servidores web y PHP.
+En esta capa, los servidores web procesan las solicitudes entrantes de los usuarios, sirviendo contenido estático y dinámico. Estos servidores también incluyen el entorno PHP para gestionar aplicaciones como Joomla, lo que permite que el contenido dinámico se genere y entregue al usuario final. Los servidores en esta capa trabajan en conjunto para asegurar que las solicitudes se manejen rápidamente y sin interrupciones.
 
 # Capa 3: Balanceador de Carga para Bases de Datos
-Detalles sobre el balanceador de carga de bases de datos.
+Este balanceador se encarga de distribuir las solicitudes de acceso a la base de datos entre los servidores de bases de datos en la Capa 4. De manera similar al balanceador de carga en la Capa 1, su función es asegurar que el tráfico hacia las bases de datos esté equilibrado, lo que mejora la escalabilidad y la disponibilidad de los datos, especialmente cuando hay múltiples servidores de base de datos.
 
-# Capa 4: Clúster de Bases de Datos
-Detalles sobre el clúster de bases de datos.
+# Capa 4: Servidores Bases de Datos
+En la Capa 4 se encuentran los servidores de bases de datos. Estos servidores gestionan toda la información almacenada en el sistema y responden a las consultas realizadas por los servidores web en la Capa 2. El clúster de bases de datos permite la replicación de datos y una alta disponibilidad, lo que garantiza que los datos no se pierdan y que el sistema siga funcionando incluso si uno de los servidores de base de datos falla.
 
 # Conclusión
 Resumen y conclusiones de la práctica.
