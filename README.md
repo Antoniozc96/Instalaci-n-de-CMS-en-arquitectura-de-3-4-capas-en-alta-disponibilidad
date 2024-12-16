@@ -16,7 +16,7 @@ Finalmente, en la cuarta capa se encontrará un clúster de bases de datos, comp
 2. [Capa 1: Balanceador de Carga](#capa-1-balanceador-de-carga)
 3. [Capa 2: Servidores Web y PHP](#capa-2-servidores-web-y-php)
 4. [Capa 3: Balanceador de Carga para Bases de Datos](#capa-3-balanceador-de-carga-para-bases-de-datos)
-5. [Capa 4: Servidores Bases de Datos](#capa-4-servidores-de-bases-de-datos)
+5. [Capa 4: Servidores de Bases de Datos](#capa-4-servidores-de-bases-de-datos)
 6. [Conclusión](#conclusión)
 
 # Introducción
