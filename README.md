@@ -49,6 +49,9 @@ A continuación se muestra el direccionamiento IP elegido para las máquinas en 
 
 - **Servidor de Base de Datos 2:**
   - **Red 1 (Red de Base de Datos):** 192.168.20.202 (Almacenamiento de datos)
+ 
+
+![practica4](https://github.com/user-attachments/assets/d1cfd4c0-a6db-4859-b946-1356f4160150)
 
 
 # Capa 1: Balanceador de Carga
