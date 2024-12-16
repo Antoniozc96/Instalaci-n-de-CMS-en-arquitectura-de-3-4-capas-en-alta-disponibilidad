@@ -20,7 +20,36 @@ Finalmente, en la cuarta capa se encontrará un clúster de bases de datos, comp
 6. [Conclusión](#conclusión)
 
 # Introducción
-Aquí empieza la introducción de tu documento.
+## Infraestructura de la práctica.
+## Dirección IP de las Máquinas
+
+A continuación se muestra el direccionamiento IP elegido para las máquinas en la infraestructura:
+
+- **Balanceador Web:**
+  - **Red 1 (Conexión NAT - VirtualBox):** NAT de VirtualBox (Conexión a la red externa)
+  - **Red 2 (Red Privada):** 10.0.10.10 (Red interna para balanceo de carga)
+
+- **Servidor NFS-PHP:**
+  - **Red 1 (Conexión Interna - Red Local):** 172.16.0.100 (Servidor compartido de archivos)
+
+- **Servidor Web 1:**
+  - **Red 1 (Red Local - Frontend):** 10.0.10.101 (Conexión para procesamiento de solicitudes web)
+  - **Red 2 (Red Local - Backend):** 172.16.0.101 (Conexión para comunicación con servidor PHP)
+
+- **Servidor Web 2:**
+  - **Red 1 (Red Local - Frontend):** 10.0.10.102 (Conexión para procesamiento de solicitudes web)
+  - **Red 2 (Red Local - Backend):** 172.16.0.102 (Conexión para comunicación con servidor PHP)
+
+- **Balanceador BBDD:**
+  - **Red 1 (Conexión Interna - Red de Base de Datos):** 172.16.0.200 (Distribución de tráfico hacia las bases de datos)
+  - **Red 2 (Red Pública - Administración):** 192.168.20.200 (Acceso administrativo al balanceador de base de datos)
+
+- **Servidor de Datos 1:**
+  - **Red 1 (Red de Base de Datos):** 192.168.20.201 (Almacenamiento de datos)
+
+- **Servidor de Datos 2:**
+  - **Red 1 (Red de Base de Datos):** 192.168.20.202 (Almacenamiento de datos)
+
 
 # Capa 1: Balanceador de Carga
 Detalles sobre el balanceador de carga.
