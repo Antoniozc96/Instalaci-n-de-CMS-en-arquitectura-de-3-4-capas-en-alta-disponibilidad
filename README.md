@@ -40,14 +40,14 @@ A continuación se muestra el direccionamiento IP elegido para las máquinas en 
   - **Red 1 (Red Local - Frontend):** 10.0.10.102 (Conexión para procesamiento de solicitudes web)
   - **Red 2 (Red Local - Backend):** 172.16.0.102 (Conexión para comunicación con servidor PHP)
 
-- **Balanceador BBDD:**
+- **Balanceador de Base de Datos::**
   - **Red 1 (Conexión Interna - Red de Base de Datos):** 172.16.0.200 (Distribución de tráfico hacia las bases de datos)
   - **Red 2 (Red Pública - Administración):** 192.168.20.200 (Acceso administrativo al balanceador de base de datos)
 
-- **Servidor de Datos 1:**
+- **Servidor de Base de Datos 1:**
   - **Red 1 (Red de Base de Datos):** 192.168.20.201 (Almacenamiento de datos)
 
-- **Servidor de Datos 2:**
+- **Servidor de Base de Datos 2:**
   - **Red 1 (Red de Base de Datos):** 192.168.20.202 (Almacenamiento de datos)
 
 
