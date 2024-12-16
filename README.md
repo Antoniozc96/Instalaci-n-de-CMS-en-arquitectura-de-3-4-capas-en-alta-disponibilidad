@@ -20,7 +20,7 @@ Finalmente, en la cuarta capa se encontrará un clúster de bases de datos, comp
 6. [Conclusión](#conclusión)
 
 # Introducción
-## Infraestructura de la práctica.
+# Infraestructura de la práctica.
 ## Dirección IP de las Máquinas
 
 A continuación se muestra el direccionamiento IP elegido para las máquinas en la infraestructura:
