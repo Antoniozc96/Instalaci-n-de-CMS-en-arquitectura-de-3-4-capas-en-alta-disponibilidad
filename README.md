@@ -1,5 +1,5 @@
 # Instalaci-n-de-CMS-en-arquitectura-de-3-4-capas-en-alta-disponibilidad
-# INTRODUCCION
+# Introducción
 En esta práctica se llevará a cabo el despliegue automatizado de un CMS Joomla sobre una infraestructura dividida en cuatro capas, con el objetivo de garantizar un sistema eficiente, escalable y altamente disponible.
 
 La primera capa estará compuesta por un balanceador de carga, cuya función principal será distribuir las solicitudes de los usuarios entre los diferentes servidores web. Este balanceador se encargará de optimizar el tráfico, garantizando que la carga se gestione de manera equitativa entre los servidores disponibles y, por ende, manteniendo la disponibilidad del servicio alta. De esta forma, se logra una mejor experiencia de usuario al evitar sobrecargar a un único servidor.
