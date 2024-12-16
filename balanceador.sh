@@ -3,7 +3,7 @@
 echo 'Acquire::Check-Valid-Until "false";' | sudo tee /etc/apt/apt.conf.d/99no-check-valid-until
 
 # Actualización de paquetes
-sudo apt update
+sudo apt update && sudp apt upgrade
 
 # Instalación de nginx
 sudo apt install -y nginx
