@@ -39,10 +39,6 @@ if [ ! -f $HOME/.flag ]; then
     sudo mysql -u root -e "FLUSH PRIVILEGES;"
 fi
 
+sleep 2
 # Denegar el acceso a internet
 sudo ip route del default
-
-echo "==============================================================================================="
-echo "Despliegue finalizado. Para acceder a su Joomla visita http://localhost:9090 en su navegador"
-echo "==============================================================================================="
-sleep 5
