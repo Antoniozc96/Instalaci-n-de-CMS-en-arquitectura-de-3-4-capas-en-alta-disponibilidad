@@ -70,3 +70,6 @@ En la Capa 4 se encuentran los servidores de bases de datos. Estos servidores ge
 La arquitectura en capas garantiza un sistema robusto, escalable y eficiente. Al distribuir la carga equitativamente y asegurar la alta disponibilidad de los servidores web y de bases de datos, se optimiza el rendimiento y se evita la sobrecarga. Esto permite un manejo eficiente del tráfico y asegura la continuidad del servicio, incluso ante fallos de servidores individuales
 
 Para acceder a su Joomla visitar http://localhost:9090 en nuestro navegador
+
+![imagen](https://github.com/user-attachments/assets/154f89f7-482a-4bc5-871b-435f2c1e07f6)
+
