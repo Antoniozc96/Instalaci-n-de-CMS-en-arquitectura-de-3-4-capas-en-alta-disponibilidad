@@ -1,57 +1,51 @@
 #!/bin/bash
-sudo apt update && sudp apt upgrade
-sleep 1
 
-# Instalación de nginx y módulos de php
-sudo apt install -y nginx
-sudo apt install -y nfs-kernel-server nfs-common php7.4-fpm php7.4-imagick php7.4-common php7.4-curl php7.4-gd php7.4-intl php7.4-json php7.4-ldap php7.4-mbstring php7.4-mysql php7.4-pgsql php7.4-ssh2 php7.4-sqlite3 php7.4-xml php7.4-zip
+# Actualizar repositorios e instalar nginx, nfs-common, PHP 7.4 y cliente mariadb
+sudo apt-get update -y
+sudo apt-get install -y nginx nfs-common php7.4 php7.4-fpm php7.4-mysql php7.4-gd php7.4-xml php7.4-mbstring php7.4-curl php7.4-zip php7.4-intl php7.4-ldap mariadb-client
 
-# Instalación de nfs-common
-sudo apt install -y nfs-common
+# Crear la carpeta compartida por NFS
+sudo mkdir -p /var/www/html
 
-# Creación de punto de montaje
-if [ ! -d /var/nfs/joomla ]; then
-    sudo mkdir -p /var/nfs/joomla
-fi
-sudo mount 172.16.0.100:/var/nfs/joomla /var/nfs/joomla
+# Montar la carpeta desde el servidor NFS
+sudo mount -t nfs 192.168.10.12:/var/www/html /var/www/html
 
-# Configuración de nginx
-joomla="
+# Añadir entrada al /etc/fstab para montaje automático
+echo "192.168.10.12:/var/www/html /var/www/html nfs defaults 0 0" >> /etc/fstab
+
+# Configuración de Nginx para servir OwnCloud
+cat <<EOF > /etc/nginx/sites-available/default
 server {
-        listen 80 default_server;
-        listen [::]:80 default_server;
+    listen 80;
 
-        root /var/nfs/joomla;
+    root /var/www/html/owncloud;
+    index index.php index.html index.htm;
 
-        index index.php index.html index.htm index.nginx-debian.html;
+    location / {
+        try_files \$uri \$uri/ /index.php?\$query_string;
+    }
 
-        server_name _;
+    location ~ \.php\$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass 192.168.10.12:9000;
+        fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
+        include fastcgi_params;
+    }
 
-        location / {
-                try_files \$uri \$uri/ =404;
-        }
+    location ~ ^/(?:\.htaccess|data|config|db_structure\.xml|README) {
+        deny all;
+    }
+}
+EOF
 
-        location ~ \.php$ {
-                include snippets/fastcgi-php.conf;
-                fastcgi_pass 172.16.0.100:9000;
-        }
-        location ~ /\.ht {
-                deny all;
-        }
-}"
+# Verificar la configuración de Nginx
+nginx -t
 
-if [ -f /etc/nginx/sites-enabled/default ]; then
-    # Eliminación del site predeterminado y creación del site de Joomla
-    sudo rm /etc/nginx/sites-enabled/default
-    sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/joomla
-    
-    # Configuración y activación del site
-    echo "$joomla" | sudo tee /etc/nginx/sites-available/joomla
-    sudo ln -s /etc/nginx/sites-available/joomla /etc/nginx/sites-enabled/
+# Reiniciar Nginx para aplicar los cambios
+sudo systemctl restart nginx
 
-    # Reinicio del servicio
-    sudo systemctl restart nginx
-fi
+# Reiniciar PHP-FPM 7.4
+sudo systemctl restart php7.4-fpm
 
-# Denegar el acceso a internet
+# Eliminar puerta de enlace por defecto de Vagrant
 sudo ip route del default
