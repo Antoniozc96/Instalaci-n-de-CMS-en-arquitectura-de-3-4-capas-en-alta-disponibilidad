@@ -26,8 +26,8 @@ Finalmente, en la cuarta capa se encontrará un clúster de bases de datos, comp
 A continuación se muestra el direccionamiento IP elegido para las máquinas en la infraestructura:
 
 - **Balanceador Web:**
-  - **Red 1 (Conexión a la red externa)
-  - **Red 2 (Red Privada):** 10.0.10.10 (Red interna para balanceo de carga)
+- **Red 1 (Conexión a la red externa)**
+- **Red 2 (Red Privada)**: 10.0.10.10 (Red interna para balanceo de carga)
 
 - **Servidor NFS-PHP:**
   - **Red 1 (Conexión Interna - Red Local):** 172.16.0.100 (Servidor compartido de archivos)
