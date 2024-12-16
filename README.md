@@ -10,6 +10,9 @@ La tercera capa estará dedicada a otro balanceador de carga que distribuirá la
 
 Finalmente, en la cuarta capa se encontrará un clúster de bases de datos, compuesto por dos servidores que albergarán la base de datos de Joomla. Estos servidores se configuran para trabajar en conjunto, con el objetivo de ofrecer redundancia y evitar cualquier punto único de fallo. Así, si uno de los servidores de base de datos falla, el otro puede continuar proporcionando los datos necesarios para el funcionamiento del sistema.
 
+Es importante destacar que todas las máquinas dentro de esta infraestructura tendrán restringida la conexión a su propia red, asegurando así que las comunicaciones sean seguras y controladas. Sin embargo, el balanceador de carga en la capa 1 tendrá acceso a Internet para recibir las solicitudes externas y distribuirlas a los servidores adecuados.
+Este diseño de infraestructura proporciona una solución robusta y escalable para el despliegue de Joomla, permitiendo gestionar el tráfico de manera eficiente, asegurar la alta disponibilidad del sistema y facilitar su mantenimiento a largo plazo.
+
 # Índice
 
 1. [Introducción](#introducción)
@@ -68,6 +71,6 @@ Este balanceador se encarga de distribuir las solicitudes de acceso a la base de
 En la Capa 4 se encuentran los servidores de bases de datos. Estos servidores gestionan toda la información almacenada en el sistema y responden a las consultas realizadas por los servidores web en la Capa 2. El clúster de bases de datos permite la replicación de datos y una alta disponibilidad, lo que garantiza que los datos no se pierdan y que el sistema siga funcionando incluso si uno de los servidores de base de datos falla.
 
 # Conclusión
-Es importante destacar que todas las máquinas dentro de esta infraestructura tendrán restringida la conexión a su propia red, asegurando así que las comunicaciones sean seguras y controladas. Sin embargo, el balanceador de carga en la capa 1 tendrá acceso a Internet para recibir las solicitudes externas y distribuirlas a los servidores adecuados.
-Este diseño de infraestructura proporciona una solución robusta y escalable para el despliegue de Joomla, permitiendo gestionar el tráfico de manera eficiente, asegurar la alta disponibilidad del sistema y facilitar su mantenimiento a largo plazo.
+La arquitectura en capas garantiza un sistema robusto, escalable y eficiente. Al distribuir la carga equitativamente y asegurar la alta disponibilidad de los servidores web y de bases de datos, se optimiza el rendimiento y se evita la sobrecarga. Esto permite un manejo eficiente del tráfico y asegura la continuidad del servicio, incluso ante fallos de servidores individuales
+
 Para acceder a su Joomla visitar http://localhost:9090 en nuestro navegador
