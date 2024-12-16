@@ -48,9 +48,6 @@ Para implementar la infraestructura, se necesitan los siguientes elementos:
 
 ---
 
-## 3. Estructura de la Infraestructura y Direccionamiento IP
-
-
 ## 3. Roles de las máquinas
 
 1. **Balanceador de carga**  
