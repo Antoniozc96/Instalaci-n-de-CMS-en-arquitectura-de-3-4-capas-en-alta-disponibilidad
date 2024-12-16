@@ -62,5 +62,32 @@ Para implementar la infraestructura, se necesitan los siguientes elementos:
 4. **Servidor de base de datos**  
    Aloja la base de datos **MariaDB**, necesaria para el funcionamiento de OwnCloud.  
 
+# Estructura por Capas de la Infraestructura
+
+## Capa 1: Expuesta a la red pública  
+- **Máquina:** `balanceadorZancadaAntonio`  
+- **Rol:** Balanceador de carga basado en **Nginx**.  
+- **Función:** Redirige el tráfico entrante desde la red pública hacia los servidores web en la Capa 2.
+
+---
+
+## Capa 2: BackEnd  
+- **Máquinas:**  
+  - `serverweb1ZancadaAntonio`  
+  - `serverweb2ZancadaAntonio`  
+- **Rol:** Cada máquina ejecuta un **servidor web Nginx**.  
+- **Función:** Procesar y servir las solicitudes de los usuarios a través del balanceador de carga.  
+
+- **Máquina adicional:** `serverNFSZancadaAntonio`  
+  - **Rol:** Proporciona un sistema de archivos compartido con **NFS** y ejecuta **PHP-FPM**.  
+  - **Función:** Facilita el acceso al almacenamiento compartido y la ejecución del código PHP de OwnCloud.
+
+---
+
+## Capa 3: Datos  
+- **Máquina:** `serverdatosZancadaAntonio`  
+- **Rol:** Servidor de base de datos **MariaDB**.  
+- **Función:** Almacenar y gestionar los datos requeridos por OwnCloud.  
+
 
 
