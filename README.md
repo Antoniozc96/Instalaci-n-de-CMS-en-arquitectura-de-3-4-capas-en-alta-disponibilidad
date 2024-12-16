@@ -89,5 +89,8 @@ Para implementar la infraestructura, se necesitan los siguientes elementos:
 - **Rol:** Servidor de base de datos **MariaDB**.  
 - **Función:** Almacenar y gestionar los datos requeridos por OwnCloud.  
 
+#RESULTADO FINAL
+![imagen](https://github.com/user-attachments/assets/f0f9b986-55d3-4b71-9ace-c0579304ce72)
+
 
 
