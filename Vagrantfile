@@ -7,60 +7,51 @@
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
 
-# The most common configuration options are documented and commented below.
-# For a complete reference, please see the online documentation at
-# https://docs.vagrantup.com.
 
-# Every Vagrant development environment requires a box. You can search for
-# boxes at https://vagrantcloud.com/search.
-Vagrant.configure("2") do |config|
   # The most common configuration options are documented and commented below.
   # For a complete reference, please see the online documentation at
   # https://docs.vagrantup.com.
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
+  Vagrant.configure("2") do |config|
   config.vm.box = "debian/bullseye64"
 
   config.vm.define "BalanceadorzancadaAntonio" do |app|
     app.vm.hostname = "BalanceadorzancadaAntonio"
     app.vm.network "public_network" 
     app.vm.network "private_network", ip: "192.168.10.2", virtualbox_intnet: "redBalanceador"
-    app.vm.provision "shell", path: "balanceador.sh"
+    #app.vm.provision "shell", path: "balanceador.sh"
   end
 
   config.vm.define "NFSzancadaAntonio" do |app|
     app.vm.hostname = "NFSzancadaAntonio"
     app.vm.network "private_network", ip: "192.168.10.12", virtualbox_intnet: "redBalanceador"
     app.vm.network "private_network", ip: "192.168.30.13", virtualbox_intnet: "redNFS"    
-    app.vm.provision "shell", path: "nfs.sh"
+    #app.vm.provision "shell", path: "nfs.sh"
   end
 
   config.vm.define "serverweb1zancadaAntonio" do |app|
     app.vm.hostname = "serverweb1zancadaAntonio"
-    app.vm.network "private_network", ip: "192.168.10.10", virtualbox_intnet: "redBalanceador"
+    app.vm.network "private_network", ip: "192.168.10.5", virtualbox_intnet: "redBalanceador"
     app.vm.network "private_network", ip: "192.168.30.11", virtualbox_intnet: "redNFS"
-    app.vm.provision "shell", path: "serverweb.sh"
+    #app.vm.provision "shell", path: "serverweb.sh"
   end
 
   config.vm.define "serverweb2zancadaAntonio" do |app|
     app.vm.hostname = "serverweb2zancadaAntonio"
-    app.vm.network "private_network", ip: "192.168.56.11", virtualbox_intnet: "redBalanceador"  
+    app.vm.network "private_network", ip: "192.168.10.6", virtualbox_intnet: "redBalanceador"  
     app.vm.network "private_network", ip: "192.168.30.12", virtualbox_intnet: "redNFS"
-    app.vm.provision "shell", path: "serverweb.sh"
+    #app.vm.provision "shell", path: "serverweb.sh"
   end
 
   config.vm.define "BDzancadaAntonio" do |app|
     app.vm.hostname = "BDzancadaAntonio"
     app.vm.network "private_network", ip: "192.168.30.10", virtualbox_intnet: "redNFS"
-    app.vm.provision "shell", path: "basedatos.sh"
+    #app.vm.provision "shell", path: "basedatos.sh"
   end
 
  end
-
-  
-
-  
 
 
   # Disable automatic box update checking. If you disable this, then
