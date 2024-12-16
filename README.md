@@ -1,80 +1,69 @@
 # Instalaci-n-de-CMS-en-arquitectura-de-3-4-capas-en-alta-disponibilidad
 # Índice
 
-1. [Introducción](#introducción)
-2. [Capa 1: Balanceador de Carga](#capa-1-balanceador-de-carga)
-3. [Capa 2: Servidores Web y PHP](#capa-2-servidores-web-y-php)
-4. [Capa 3: Balanceador de Carga para Bases de Datos](#capa-3-balanceador-de-carga-para-bases-de-datos)
-5. [Capa 4: Servidores de Bases de Datos](#capa-4-servidores-de-bases-de-datos)
-6. [Conclusión](#conclusión)
+1. [Introducción](#introducción)  
+2. [Requisitos previos](#requisitos-previos)  
+3. [Estructura de la Infraestructura y Direccionamiento IP](#estructura-de-la-infraestructura-y-direccionamiento-ip)  
+4. [Roles de las máquinas](#roles-de-las-máquinas)  
 
-# Introducción
-En esta práctica se llevará a cabo el despliegue automatizado de un CMS Joomla sobre una infraestructura dividida en cuatro capas, con el objetivo de garantizar un sistema eficiente, escalable y altamente disponible.
+---
 
-La primera capa estará compuesta por un balanceador de carga, cuya función principal será distribuir las solicitudes de los usuarios entre los diferentes servidores web. Este balanceador se encargará de optimizar el tráfico, garantizando que la carga se gestione de manera equitativa entre los servidores disponibles y, por ende, manteniendo la disponibilidad del servicio alta. De esta forma, se logra una mejor experiencia de usuario al evitar sobrecargar a un único servidor.
+## 1. Introducción
 
-En la segunda capa se ubicarán los servidores encargados de procesar las solicitudes del lado del servidor (BackEnd). Esta capa incluirá dos servidores web que ejecutarán el CMS Joomla, junto con un servidor NFS (Network File System) y un servidor PHP. Estos componentes trabajarán en conjunto para gestionar los archivos estáticos y el procesamiento dinámico de PHP, lo cual es fundamental para el funcionamiento adecuado de Joomla. Además, el servidor NFS permitirá compartir archivos entre los servidores, lo que facilita la administración y sincronización de datos.
+Este proyecto consiste en crear un entorno virtualizado para instalar y configurar **OwnCloud**, una plataforma de almacenamiento y colaboración en la nube. La infraestructura estará compuesta por varias máquinas virtuales gestionadas con **Vagrant**, cada una con un rol específico:
 
-La tercera capa estará dedicada a otro balanceador de carga que distribuirá las solicitudes entre los servidores de bases de datos. De esta manera, las consultas a la base de datos se distribuyen de manera equilibrada entre los servidores disponibles, asegurando que no se sobrecargue ningún servidor en particular y manteniendo una alta disponibilidad para el acceso a la base de datos.
+- **Balanceador de carga**
+- **Base de datos**
+- **Servidor NFS**
+- **Servidores web**
 
-Finalmente, en la cuarta capa se encontrará un clúster de bases de datos, compuesto por dos servidores que albergarán la base de datos de Joomla. Estos servidores se configuran para trabajar en conjunto, con el objetivo de ofrecer redundancia y evitar cualquier punto único de fallo. Así, si uno de los servidores de base de datos falla, el otro puede continuar proporcionando los datos necesarios para el funcionamiento del sistema.
+Se emplearán **scripts de configuración automatizada** para garantizar que la instalación sea consistente y reproducible.
 
-# Infraestructura de la práctica.
-## Dirección IP de las Máquinas
+### Direccionamiento IP de la Infraestructura:
+##  Balanceador
+-  **192.168.56.2 e IP pública automática**
 
-A continuación se muestra el direccionamiento IP elegido para las máquinas en la infraestructura:
+## Servidor NFS
+- **192.168.56.12 y 192.168.60.13**
+## Servidor web 1
 
-- **Balanceador Web:**
-  - Red 1 (Conexión a la red externa)
-  - **Red 2 (Red Privada)**: 10.0.10.10 (Red interna para balanceo de carga)
+- **192.168.56.10 y 192.168.60.11**
 
-- **Servidor NFS-PHP:**
-  - **Red 1 (Conexión Interna - Red Local):** 172.16.0.100 (Servidor compartido de archivos)
+## Servidor web 2
+- **192.168.56.11 y 192.168.60.12**
 
-- **Servidor Web 1:**
-  - **Red 1 (Red Local - Frontend):** 10.0.10.101 (Conexión para procesamiento de solicitudes web)
-  - **Red 2 (Red Local - Backend):** 172.16.0.101 (Conexión para comunicación con servidor PHP)
+Servidor de base de datos  
+- **192.168.60.10**
 
-- **Servidor Web 2:**
-  - **Red 1 (Red Local - Frontend):** 10.0.10.102 (Conexión para procesamiento de solicitudes web)
-  - **Red 2 (Red Local - Backend):** 172.16.0.102 (Conexión para comunicación con servidor PHP)
+---
 
-- **Balanceador de Base de Datos::**
-  - **Red 1 (Conexión Interna - Red de Base de Datos):** 172.16.0.200 (Distribución de tráfico hacia las bases de datos)
-  - **Red 2 (Red Pública - Administración):** 192.168.20.200 (Acceso administrativo al balanceador de base de datos)
+## 2. Requisitos previos
 
-- **Servidor de Base de Datos 1:**
-  - **Red 1 (Red de Base de Datos):** 192.168.20.201 (Almacenamiento de datos)
+Para implementar la infraestructura, se necesitan los siguientes elementos:
 
-- **Servidor de Base de Datos 2:**
-  - **Red 1 (Red de Base de Datos):** 192.168.20.202 (Almacenamiento de datos)
+- **Vagrant** instalado en la máquina anfitriona.  
+- **VirtualBox** como herramienta de virtualización.  
+- Una imagen de **Debian**.  
+- **Conexión a internet** para descargar paquetes necesarios.  
 
-  
- 
-![practica4](https://github.com/user-attachments/assets/d1cfd4c0-a6db-4859-b946-1356f4160150)
+---
+
+## 3. Estructura de la Infraestructura y Direccionamiento IP
 
 
-# Capa 1: Balanceador de Carga
-El balanceador de carga distribuye las solicitudes de los usuarios entre los servidores web (Capa 2), garantizando que la carga se reparta de manera equitativa. Su objetivo principal es mejorar la disponibilidad y el rendimiento, asegurando que ningún servidor se sobrecargue, y permitiendo que el sistema maneje grandes volúmenes de tráfico de manera eficiente.
+## 3. Roles de las máquinas
 
-# Capa 2: Servidores Web y PHP
-En esta capa, los servidores web procesan las solicitudes entrantes de los usuarios, sirviendo contenido estático y dinámico. Estos servidores también incluyen el entorno PHP para gestionar aplicaciones como Joomla, lo que permite que el contenido dinámico se genere y entregue al usuario final. Los servidores en esta capa trabajan en conjunto para asegurar que las solicitudes se manejen rápidamente y sin interrupciones.
+1. **Balanceador de carga**  
+   Administra y distribuye el tráfico hacia los servidores web.
 
-# Capa 3: Balanceador de Carga para Bases de Datos
-Este balanceador se encarga de distribuir las solicitudes de acceso a la base de datos entre los servidores de bases de datos en la Capa 4. De manera similar al balanceador de carga en la Capa 1, su función es asegurar que el tráfico hacia las bases de datos esté equilibrado, lo que mejora la escalabilidad y la disponibilidad de los datos, especialmente cuando hay múltiples servidores de base de datos.
+2. **Servidor NFS**  
+   Proporciona almacenamiento compartido para los servidores web.  
 
-# Capa 4: Servidores de Bases de Datos
-En la Capa 4 se encuentran los servidores de bases de datos. Estos servidores gestionan toda la información almacenada en el sistema y responden a las consultas realizadas por los servidores web en la Capa 2. El clúster de bases de datos permite la replicación de datos y una alta disponibilidad, lo que garantiza que los datos no se pierdan y que el sistema siga funcionando incluso si uno de los servidores de base de datos falla.
+3. **Servidores web**  
+   Ejecutan **OwnCloud** y acceden al almacenamiento compartido proporcionado por el servidor NFS.  
 
-# Conclusión
-La arquitectura en capas garantiza un sistema robusto, escalable y eficiente. Al distribuir la carga equitativamente y asegurar la alta disponibilidad de los servidores web y de bases de datos, se optimiza el rendimiento y se evita la sobrecarga. Esto permite un manejo eficiente del tráfico y asegura la continuidad del servicio, incluso ante fallos de servidores individuales
+4. **Servidor de base de datos**  
+   Aloja la base de datos **MariaDB**, necesaria para el funcionamiento de OwnCloud.  
 
-Para acceder a su Joomla visitar:
-- http://localhost:9090 en nuestro navegador
-- http://10.0.10.101
-- http://10.0.10.102
-
-
-![imagen](https://github.com/user-attachments/assets/510548eb-2ea6-4b81-be66-5818f077c4c2)
 
 
