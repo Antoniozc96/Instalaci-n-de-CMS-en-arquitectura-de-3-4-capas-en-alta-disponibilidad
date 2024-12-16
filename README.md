@@ -60,7 +60,7 @@ En esta capa, los servidores web procesan las solicitudes entrantes de los usuar
 # Capa 3: Balanceador de Carga para Bases de Datos
 Este balanceador se encarga de distribuir las solicitudes de acceso a la base de datos entre los servidores de bases de datos en la Capa 4. De manera similar al balanceador de carga en la Capa 1, su función es asegurar que el tráfico hacia las bases de datos esté equilibrado, lo que mejora la escalabilidad y la disponibilidad de los datos, especialmente cuando hay múltiples servidores de base de datos.
 
-# Capa 4: Servidores Bases de Datos
+# Capa 4: Servidores de Bases de Datos
 En la Capa 4 se encuentran los servidores de bases de datos. Estos servidores gestionan toda la información almacenada en el sistema y responden a las consultas realizadas por los servidores web en la Capa 2. El clúster de bases de datos permite la replicación de datos y una alta disponibilidad, lo que garantiza que los datos no se pierdan y que el sistema siga funcionando incluso si uno de los servidores de base de datos falla.
 
 # Conclusión
