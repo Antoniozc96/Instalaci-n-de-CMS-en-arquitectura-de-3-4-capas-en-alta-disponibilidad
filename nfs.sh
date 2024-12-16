@@ -51,8 +51,8 @@ php -r "
     \$config['trusted_domains'] = array(
       'localhost',
       'localhost:8080',
-      '192.168.10.10',
-      '192.168.10.11',
+      '192.168.10.5',
+      '192.168.10.6',
       '192.168.10.12',
     );
     file_put_contents(\$configFile, '<?php return ' . var_export(\$config, true) . ';');
