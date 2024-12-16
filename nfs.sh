@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo apt update
+sudo apt update && sudp apt upgrade
 sleep 1
 
 # Instalación de nfs-kernel-server y PHP
