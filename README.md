@@ -74,5 +74,7 @@ Para acceder a su Joomla visitar:
 - http://10.0.10.101
 - http://10.0.10.102
 
-![imagen](https://github.com/user-attachments/assets/154f89f7-482a-4bc5-871b-435f2c1e07f6)
+
+![imagen](https://github.com/user-attachments/assets/510548eb-2ea6-4b81-be66-5818f077c4c2)
+
 
