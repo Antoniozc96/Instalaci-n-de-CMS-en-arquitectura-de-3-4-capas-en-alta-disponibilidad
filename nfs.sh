@@ -10,8 +10,8 @@ sudo chown -R www-data:www-data /var/www/html
 sudo chmod -R 755 /var/www/html
 
 # Configurar NFS para compartir la carpeta
-echo "/var/www/html 192.168.56.11(rw,sync,no_subtree_check)" >> /etc/exports
-echo "/var/www/html 192.168.56.10(rw,sync,no_subtree_check)" >> /etc/exports
+echo "/var/www/html 192.168.10.5(rw,sync,no_subtree_check)" >> /etc/exports
+echo "/var/www/html 192.168.10.6(rw,sync,no_subtree_check)" >> /etc/exports
 
 # Reiniciar NFS para aplicar cambios
 sudo exportfs -a
@@ -35,7 +35,7 @@ cat <<EOF > /var/www/html/owncloud/config/autoconfig.php
   "dbname" => "owncloud",
   "dbuser" => "owncloud",
   "dbpassword" => "12345",
-  "dbhost" => "192.168.60.10",
+  "dbhost" => "192.168.30.10",
   "directory" => "/var/www/html/owncloud/data",
   "adminlogin" => "antonio",
   "adminpass" => "1234?"
