@@ -10,8 +10,6 @@ La tercera capa estará dedicada a otro balanceador de carga que distribuirá la
 
 Finalmente, en la cuarta capa se encontrará un clúster de bases de datos, compuesto por dos servidores que albergarán la base de datos de Joomla. Estos servidores se configuran para trabajar en conjunto, con el objetivo de ofrecer redundancia y evitar cualquier punto único de fallo. Así, si uno de los servidores de base de datos falla, el otro puede continuar proporcionando los datos necesarios para el funcionamiento del sistema.
 
-Es importante destacar que todas las máquinas dentro de esta infraestructura tendrán restringida la conexión a su propia red, asegurando así que las comunicaciones sean seguras y controladas. Sin embargo, el balanceador de carga en la capa 1 tendrá acceso a Internet para recibir las solicitudes externas y distribuirlas a los servidores adecuados.
-Este diseño de infraestructura proporciona una solución robusta y escalable para el despliegue de Joomla, permitiendo gestionar el tráfico de manera eficiente, asegurar la alta disponibilidad del sistema y facilitar su mantenimiento a largo plazo.
 
 # Índice
 
