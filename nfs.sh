@@ -62,7 +62,7 @@ php -r "
 "
 
 # Configuración de PHP-FPM para escuchar en la IP del servidor NFS
-sed -i 's/^listen = .*/listen = 192.168.10.12:9000/' /etc/php/7.4/fpm/pool.d/www.conf
+sed -i 's/^listen = .*/listen = 192.168.30.12:9000/' /etc/php/7.4/fpm/pool.d/www.conf
 
 # Reiniciar PHP-FPM
 sudo systemctl restart php7.4-fpm
