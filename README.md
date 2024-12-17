@@ -1,8 +1,6 @@
 # Instalaci-n-de-CMS-en-arquitectura-de-3-4-capas-en-alta-disponibilidad
 
 
-![Diagrama1](https://github.com/user-attachments/assets/40335b9e-91c1-450d-b4d7-2ac9d5993b46)
-
 # Índice
 
 1. [Introducción](#1-introducción)  
@@ -12,6 +10,7 @@
 5. [Preparar el Vagrantfile](#5-preparar-el-vagrantfile)  
 6. [Iniciar Vagrant y ejecutar los scripts de provisión](#6-iniciar-vagrant-y-ejecutar-los-scripts-de-provisión)  
 7. [Acceder a OwnCloud](#7-acceder-a-owncloud)  
+8. [Conclusión](#8-conclusión)  
 
 ---
 
@@ -123,6 +122,17 @@ Desde la terminal, ejecuta uno de los siguientes comandos:
 - Ejecuta el comando `ip a` para identificar la IP pública asignada al balanceador.  
 - Abre un navegador y accede a: `http://<ip_pública_balanceador>/owncloud`.  
 - Ingresa tus credenciales de administrador para iniciar sesión.
+
+---
+
+## 8. Conclusión
+
+En esta práctica, hemos aprendido a configurar un entorno virtualizado para implementar **OwnCloud** utilizando **Vagrant** y **scripts automatizados**. A través de la separación de roles en diferentes máquinas, hemos logrado garantizar una infraestructura escalable y flexible. El uso de un balanceador de carga permite distribuir el tráfico entre los servidores web, lo que mejora la disponibilidad y el rendimiento de la aplicación. 
+
+Además, la integración de un servidor NFS centralizado como almacenamiento compartido facilita la gestión de los datos, permitiendo que los servidores web accedan a los mismos archivos sin importar en qué servidor estén alojados. Esta arquitectura no solo mejora la eficiencia, sino que también proporciona un alto grado de redundancia y escalabilidad, lo que es fundamental para proyectos de colaboración en la nube como OwnCloud.  
+
+Con esta configuración, hemos logrado crear un entorno robusto y fácil de mantener para ejecutar **OwnCloud**, con un alto nivel de automatización y facilidad de gestión a largo plazo.
+
 
 # RESULTADO FINAL
 ![imagen](https://github.com/user-attachments/assets/f0f9b986-55d3-4b71-9ace-c0579304ce72)
