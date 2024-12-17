@@ -51,9 +51,9 @@ php -r "
     \$config['trusted_domains'] = array(
       'localhost',
       'localhost:8080',
-      '192.168.30.5',
-      '192.168.30.6',
-      '192.168.30.12',
+      '192.168.10.11',
+      '192.168.10.12',
+      '192.168.10.13',
     );
     file_put_contents(\$configFile, '<?php return ' . var_export(\$config, true) . ';');
   } else {
@@ -62,7 +62,7 @@ php -r "
 "
 
 # Configuración de PHP-FPM para escuchar en la IP del servidor NFS
-sed -i 's/^listen = .*/listen = 192.168.30.12:9000/' /etc/php/7.4/fpm/pool.d/www.conf
+sed -i 's/^listen = .*/listen = 192.168.10.13:9000/' /etc/php/7.4/fpm/pool.d/www.conf
 
 # Reiniciar PHP-FPM
 sudo systemctl restart php7.4-fpm
