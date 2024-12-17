@@ -8,10 +8,10 @@ sudo apt-get install -y nginx nfs-common php7.4 php7.4-fpm php7.4-mysql php7.4-g
 sudo mkdir -p /var/www/html
 
 # Montar la carpeta desde el servidor NFS
-sudo mount -t nfs 192.168.10.13:/var/www/html /var/www/html
+sudo mount -t nfs 192.168.10.12:/var/www/html /var/www/html
 
 # Añadir entrada al /etc/fstab para montaje automático
-echo "192.168.10.13:/var/www/html /var/www/html nfs defaults 0 0" >> /etc/fstab
+echo "192.168.10.12:/var/www/html /var/www/html nfs defaults 0 0" >> /etc/fstab
 
 # Configuración de Nginx para servir OwnCloud
 cat <<EOF > /etc/nginx/sites-available/default
@@ -27,7 +27,7 @@ server {
 
     location ~ \.php\$ {
         include snippets/fastcgi-php.conf;
-        fastcgi_pass 192.168.10.13:9000;
+        fastcgi_pass 192.168.10.12:9000;
         fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
         include fastcgi_params;
     }
