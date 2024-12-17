@@ -54,26 +54,6 @@ La separación de estos roles en diferentes máquinas virtuales proporciona vari
 
 En resumen, este proyecto no solo se centra en la instalación de **OwnCloud**, sino también en la construcción de una infraestructura sólida y escalable para soportar su funcionamiento de manera eficiente. Utilizando herramientas como **Vagrant** y **Nginx**, podemos asegurar una configuración automatizada y una gestión simplificada, lo que permite que el entorno crezca y se adapte a las necesidades cambiantes de los usuarios.
 
-
-Se emplearán **scripts de configuración automatizada** para garantizar que la instalación sea consistente y reproducible.
-
-### Direccionamiento IP de la Infraestructura:  
-
-#### Balanceador
-- **192.168.56.2 e IP pública automática**
-
-#### Servidor NFS
-- **192.168.56.12 y 192.168.60.13**
-
-#### Servidor web 1
-- **192.168.56.10 y 192.168.60.11**
-
-#### Servidor web 2
-- **192.168.56.11 y 192.168.60.12**
-
-#### Servidor de base de datos  
-- **192.168.60.10**
-
 ---
 
 ## 2. Requisitos previos
