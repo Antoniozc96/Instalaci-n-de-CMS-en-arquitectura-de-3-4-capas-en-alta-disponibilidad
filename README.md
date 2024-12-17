@@ -93,6 +93,30 @@ Para implementar la infraestructura, se necesitan los siguientes elementos:
 - **Rol:** Servidor de base de datos **MariaDB**.  
 - **Función:** Almacenar y gestionar los datos requeridos por OwnCloud.  
 
+1. **Preparar el Vagrantfile**  
+   Configura el archivo `Vagrantfile` siguiendo los pasos establecidos. Es importante que las máquinas se inicien en el siguiente orden:  
+   - Base de datos  
+   - Servidor NFS  
+   - Servidores web  
+   - Balanceador de carga  
+
+   Asegúrate de utilizar preferiblemente la imagen `debian/bullseye64` para todas las máquinas.
+
+---
+
+2. **Iniciar Vagrant y ejecutar los scripts de provisión**  
+   Desde la terminal, ejecuta uno de los siguientes comandos:  
+   - `vagrant up --provision` para iniciar las máquinas y aplicar las configuraciones en un solo paso.  
+   - O bien, primero `vagrant up` para iniciar las máquinas, seguido de `vagrant provision` para aplicar los scripts de configuración.
+
+---
+
+3. **Acceder a OwnCloud**  
+   - Conéctate a la máquina del balanceador usando `vagrant ssh balanceador`.  
+   - Ejecuta el comando `ip a` para identificar la IP pública asignada al balanceador.  
+   - Abre un navegador y accede a: `http://<ip_pública_balanceador>/owncloud`.  
+   - Ingresa tus credenciales de administrador para iniciar sesión.
+
 # RESULTADO FINAL
 ![imagen](https://github.com/user-attachments/assets/f0f9b986-55d3-4b71-9ace-c0579304ce72)
 
