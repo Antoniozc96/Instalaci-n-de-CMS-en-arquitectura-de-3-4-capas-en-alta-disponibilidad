@@ -1,6 +1,10 @@
 # Instalaci-n-de-CMS-en-arquitectura-de-3-4-capas-en-alta-disponibilidad
-# Índice
 
+
+![Diagrama1](https://github.com/user-attachments/assets/40335b9e-91c1-450d-b4d7-2ac9d5993b46)
+
+
+# Índice
 1. [Introducción](#introducción)  
 2. [Requisitos previos](#requisitos-previos)  
 3. [Estructura de la Infraestructura y Direccionamiento IP](#estructura-de-la-infraestructura-y-direccionamiento-ip)  
