@@ -150,8 +150,7 @@ Con esta configuración, hemos logrado crear un entorno robusto y fácil de mant
 ![imagen](https://github.com/user-attachments/assets/c966f6ad-f5e6-47ad-8e26-bef259436ed8)
 
 
-# Después de poner las credenciales: 
-![imagen](https://github.com/user-attachments/assets/66c3294a-6ca5-41d6-a1dc-026c8f474e1f)
+
 
 
 
