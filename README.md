@@ -14,14 +14,46 @@
 
 ---
 
-## 1. Introducción
+## Introducción
 
-Este proyecto consiste en crear un entorno virtualizado para instalar y configurar **OwnCloud**, una plataforma de almacenamiento y colaboración en la nube. La infraestructura estará compuesta por varias máquinas virtuales gestionadas con **Vagrant**, cada una con un rol específico:
+Este proyecto tiene como objetivo la creación de un entorno virtualizado dedicado a la instalación y configuración de **OwnCloud**, una plataforma de almacenamiento y colaboración en la nube. **OwnCloud** permite a los usuarios almacenar, compartir y colaborar en archivos de forma segura y eficiente, y se ha convertido en una de las soluciones más populares para la gestión de datos en la nube en entornos corporativos y personales.
 
-- **Balanceador de carga**
-- **Servidor NFS**
-- **Servidores web**
-- **Base de datos**
+Para llevar a cabo esta implementación, se utilizará una infraestructura compuesta por varias máquinas virtuales gestionadas con **Vagrant**. **Vagrant** es una herramienta que facilita la creación y administración de entornos virtuales de desarrollo, lo que permite automatizar la configuración de las máquinas virtuales de manera sencilla y reproducible. En este caso, se aprovecharán sus capacidades para gestionar la infraestructura de **OwnCloud**.
+
+La infraestructura estará organizada en varias capas que se asignarán a diferentes máquinas virtuales, cada una de las cuales tendrá un rol específico. Esto proporciona una mayor escalabilidad, flexibilidad y seguridad, ya que cada componente de la arquitectura está aislado y puede ser modificado de forma independiente sin afectar a los demás.
+
+### Componentes de la infraestructura
+
+A continuación, se detallan los roles que tendrán las distintas máquinas virtuales dentro de este entorno:
+
+1. **Balanceador de carga**  
+   El balanceador de carga es un componente clave en la infraestructura, ya que su función principal es distribuir el tráfico entrante entre los servidores web. Esto asegura que el sistema pueda manejar múltiples solicitudes simultáneamente sin que ningún servidor individual se sobrecargue. En este caso, se utilizará **Nginx** como balanceador de carga, un servidor web ligero y altamente eficiente que permite una distribución eficiente de las solicitudes.
+
+2. **Servidor NFS (Network File System)**  
+   El servidor **NFS** se encargará de proporcionar almacenamiento compartido para los servidores web. **NFS** es un protocolo que permite que una máquina virtual acceda a los archivos de otra máquina a través de la red. En este proyecto, el servidor **NFS** permitirá a los servidores web compartir los mismos archivos y asegurará que las actualizaciones en los archivos sean reflejadas instantáneamente en todas las instancias de la aplicación **OwnCloud**.
+
+3. **Servidores web**  
+   Los servidores web son las máquinas encargadas de ejecutar la aplicación **OwnCloud** y manejar las solicitudes de los usuarios. Cada servidor web se conectará al servidor **NFS** para acceder al almacenamiento compartido y servirá los archivos a los usuarios. Los servidores web ejecutarán **Nginx** como servidor HTTP y **PHP-FPM** para manejar la ejecución de los scripts PHP, que es el lenguaje utilizado por **OwnCloud**.
+
+4. **Base de datos**  
+   El servidor de base de datos será responsable de almacenar toda la información estructurada de **OwnCloud**, como los datos de los usuarios, configuraciones y metadatos de los archivos. Para este proyecto, se utilizará **MariaDB**, una base de datos de código abierto y altamente confiable, compatible con **MySQL**. La base de datos estará diseñada para soportar un gran volumen de operaciones de lectura y escritura, asegurando que la aplicación funcione de manera eficiente incluso cuando se gestionen grandes cantidades de datos.
+
+### Objetivo y ventajas de la arquitectura
+
+La separación de estos roles en diferentes máquinas virtuales proporciona varios beneficios importantes:
+
+- **Escalabilidad**: Cada componente puede escalar de forma independiente. Por ejemplo, si se incrementa el número de usuarios o el volumen de datos, es posible añadir más servidores web sin necesidad de modificar la infraestructura completa.
+  
+- **Flexibilidad**: Al tener cada servicio en una máquina virtual separada, se pueden hacer cambios o actualizaciones en un servicio sin afectar a los demás. Esto facilita el mantenimiento y la evolución de la infraestructura a lo largo del tiempo.
+
+- **Redundancia y fiabilidad**: Al utilizar un balanceador de carga y servidores web distribuidos, la infraestructura se vuelve más resistente a fallos. Si un servidor web falla, el balanceador de carga puede redirigir el tráfico a otros servidores disponibles, garantizando que el servicio continúe funcionando sin interrupciones.
+
+- **Gestión centralizada de datos**: El uso de un servidor **NFS** centralizado facilita la administración de los archivos y la sincronización de datos entre los servidores web. Los archivos están almacenados en un solo lugar y pueden ser accedidos desde cualquier servidor web en la infraestructura.
+
+- **Automatización**: La utilización de **Vagrant** permite la automatización de la creación y configuración de todas las máquinas virtuales, lo que facilita la implementación y hace que el entorno sea reproducible en cualquier otra máquina. Esto es particularmente útil para entornos de desarrollo, pruebas y producción.
+
+En resumen, este proyecto no solo se centra en la instalación de **OwnCloud**, sino también en la construcción de una infraestructura sólida y escalable para soportar su funcionamiento de manera eficiente. Utilizando herramientas como **Vagrant** y **Nginx**, podemos asegurar una configuración automatizada y una gestión simplificada, lo que permite que el entorno crezca y se adapte a las necesidades cambiantes de los usuarios.
+
 
 Se emplearán **scripts de configuración automatizada** para garantizar que la instalación sea consistente y reproducible.
 
