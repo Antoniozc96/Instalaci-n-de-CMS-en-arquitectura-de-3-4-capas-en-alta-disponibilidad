@@ -7,8 +7,8 @@ sudo apt-get install -y nginx
 # Configuracion de Nginx como balanceador de carga
 cat <<EOF > /etc/nginx/sites-available/default
 upstream backend_servers {
-    server 192.168.10.11;
-    server 192.168.10.12;
+    server 192.168.10.5;
+    server 192.168.10.6;
 }
 
 server {
