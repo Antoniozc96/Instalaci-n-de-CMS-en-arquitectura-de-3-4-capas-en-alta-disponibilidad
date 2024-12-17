@@ -26,28 +26,28 @@
 
   config.vm.define "NFSzancadaAntonio" do |app|
     app.vm.hostname = "NFSzancadaAntonio"
-    app.vm.network "private_network", ip: "192.168.30.12", virtualbox_intnet: "redBalanceador"
-    app.vm.network "private_network", ip: "192.168.10.13", virtualbox_intnet: "redNFS"    
+    app.vm.network "private_network", ip: "192.168.10.12", virtualbox_intnet: "redBalanceador"
+    app.vm.network "private_network", ip: "192.168.30.13", virtualbox_intnet: "redNFS"    
     #app.vm.provision "shell", path: "nfs.sh"
   end
 
   config.vm.define "serverweb1zancadaAntonio" do |app|
     app.vm.hostname = "serverweb1zancadaAntonio"
-    app.vm.network "private_network", ip: "192.168.30.5", virtualbox_intnet: "redBalanceador"
-    app.vm.network "private_network", ip: "192.168.10.11", virtualbox_intnet: "redNFS"
+    app.vm.network "private_network", ip: "192.168.10.5", virtualbox_intnet: "redBalanceador"
+    app.vm.network "private_network", ip: "192.168.30.11", virtualbox_intnet: "redNFS"
     #app.vm.provision "shell", path: "serverweb.sh"
   end
 
   config.vm.define "serverweb2zancadaAntonio" do |app|
     app.vm.hostname = "serverweb2zancadaAntonio"
-    app.vm.network "private_network", ip: "192.168.30.6", virtualbox_intnet: "redBalanceador"  
-    app.vm.network "private_network", ip: "192.168.10.12", virtualbox_intnet: "redNFS"
+    app.vm.network "private_network", ip: "192.168.10.6", virtualbox_intnet: "redBalanceador"  
+    app.vm.network "private_network", ip: "192.168.30.12", virtualbox_intnet: "redNFS"
     #app.vm.provision "shell", path: "serverweb.sh"
   end
 
   config.vm.define "BDzancadaAntonio" do |app|
     app.vm.hostname = "BDzancadaAntonio"
-    app.vm.network "private_network", ip: "192.168.10.10", virtualbox_intnet: "redNFS"
+    app.vm.network "private_network", ip: "192.168.30.10", virtualbox_intnet: "redNFS"
     #app.vm.provision "shell", path: "basedatos.sh"
   end
 
