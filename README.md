@@ -3,12 +3,15 @@
 
 ![Diagrama1](https://github.com/user-attachments/assets/40335b9e-91c1-450d-b4d7-2ac9d5993b46)
 
-
 # Índice
-1. [Introducción](#introducción)  
-2. [Requisitos previos](#requisitos-previos)  
-3. [Estructura de la Infraestructura y Direccionamiento IP](#estructura-de-la-infraestructura-y-direccionamiento-ip)  
-4. [Roles de las máquinas](#roles-de-las-máquinas)  
+
+1. [Introducción](#1-introducción)  
+2. [Requisitos previos](#2-requisitos-previos)  
+3. [Roles de las máquinas](#3-roles-de-las-máquinas)  
+4. [Estructura por Capas de la Infraestructura](#4-estructura-por-capas-de-la-infraestructura)  
+5. [Preparar el Vagrantfile](#5-preparar-el-vagrantfile)  
+6. [Iniciar Vagrant y ejecutar los scripts de provisión](#6-iniciar-vagrant-y-ejecutar-los-scripts-de-provisión)  
+7. [Acceder a OwnCloud](#7-acceder-a-owncloud)  
 
 ---
 
@@ -23,20 +26,21 @@ Este proyecto consiste en crear un entorno virtualizado para instalar y configur
 
 Se emplearán **scripts de configuración automatizada** para garantizar que la instalación sea consistente y reproducible.
 
-### Direccionamiento IP de la Infraestructura:
-##  Balanceador
--  **192.168.56.2 e IP pública automática**
+### Direccionamiento IP de la Infraestructura:  
 
-## Servidor NFS
+#### Balanceador
+- **192.168.56.2 e IP pública automática**
+
+#### Servidor NFS
 - **192.168.56.12 y 192.168.60.13**
-## Servidor web 1
 
+#### Servidor web 1
 - **192.168.56.10 y 192.168.60.11**
 
-## Servidor web 2
+#### Servidor web 2
 - **192.168.56.11 y 192.168.60.12**
 
-Servidor de base de datos  
+#### Servidor de base de datos  
 - **192.168.60.10**
 
 ---
@@ -66,16 +70,16 @@ Para implementar la infraestructura, se necesitan los siguientes elementos:
 4. **Servidor de base de datos**  
    Aloja la base de datos **MariaDB**, necesaria para el funcionamiento de OwnCloud.  
 
-# Estructura por Capas de la Infraestructura
+---
 
-## Capa 1: Expuesta a la red pública  
+## 4. Estructura por Capas de la Infraestructura
+
+### Capa 1: Expuesta a la red pública  
 - **Máquina:** `balanceadorZancadaAntonio`  
 - **Rol:** Balanceador de carga basado en **Nginx**.  
 - **Función:** Redirige el tráfico entrante desde la red pública hacia los servidores web en la Capa 2.
 
----
-
-## Capa 2: BackEnd  
+### Capa 2: BackEnd  
 - **Máquinas:**  
   - `serverweb1ZancadaAntonio`  
   - `serverweb2ZancadaAntonio`  
@@ -86,36 +90,39 @@ Para implementar la infraestructura, se necesitan los siguientes elementos:
   - **Rol:** Proporciona un sistema de archivos compartido con **NFS** y ejecuta **PHP-FPM**.  
   - **Función:** Facilita el acceso al almacenamiento compartido y la ejecución del código PHP de OwnCloud.
 
----
-
-## Capa 3: Datos  
+### Capa 3: Datos  
 - **Máquina:** `serverdatosZancadaAntonio`  
 - **Rol:** Servidor de base de datos **MariaDB**.  
 - **Función:** Almacenar y gestionar los datos requeridos por OwnCloud.  
 
-1. **Preparar el Vagrantfile**  
-   Configura el archivo `Vagrantfile` siguiendo los pasos establecidos. Es importante que las máquinas se inicien en el siguiente orden:  
+---
+
+## 5. Preparar el Vagrantfile  
+
+Configura el archivo `Vagrantfile` siguiendo los pasos establecidos. Es importante que las máquinas se inicien en el siguiente orden:  
    - Base de datos  
    - Servidor NFS  
    - Servidores web  
    - Balanceador de carga  
 
-   Asegúrate de utilizar preferiblemente la imagen `debian/bullseye64` para todas las máquinas.
+Asegúrate de utilizar preferiblemente la imagen `debian/bullseye64` para todas las máquinas.
 
 ---
 
-2. **Iniciar Vagrant y ejecutar los scripts de provisión**  
-   Desde la terminal, ejecuta uno de los siguientes comandos:  
+## 6. Iniciar Vagrant y ejecutar los scripts de provisión  
+
+Desde la terminal, ejecuta uno de los siguientes comandos:  
    - `vagrant up --provision` para iniciar las máquinas y aplicar las configuraciones en un solo paso.  
    - O bien, primero `vagrant up` para iniciar las máquinas, seguido de `vagrant provision` para aplicar los scripts de configuración.
 
 ---
 
-3. **Acceder a OwnCloud**  
-   - Conéctate a la máquina del balanceador usando `vagrant ssh balanceador`.  
-   - Ejecuta el comando `ip a` para identificar la IP pública asignada al balanceador.  
-   - Abre un navegador y accede a: `http://<ip_pública_balanceador>/owncloud`.  
-   - Ingresa tus credenciales de administrador para iniciar sesión.
+## 7. Acceder a OwnCloud  
+
+- Conéctate a la máquina del balanceador usando `vagrant ssh balanceador`.  
+- Ejecuta el comando `ip a` para identificar la IP pública asignada al balanceador.  
+- Abre un navegador y accede a: `http://<ip_pública_balanceador>/owncloud`.  
+- Ingresa tus credenciales de administrador para iniciar sesión.
 
 # RESULTADO FINAL
 ![imagen](https://github.com/user-attachments/assets/f0f9b986-55d3-4b71-9ace-c0579304ce72)
