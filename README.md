@@ -116,7 +116,7 @@ Configura el archivo `Vagrantfile` siguiendo los pasos establecidos. Es importan
    - Servidores web  
    - Balanceador de carga  
 
-Asegúrate de utilizar preferiblemente la imagen `debian/bullseye64` para todas las máquinas.
+En mi caso la imagen `debian/bullseye64` para todas las máquinas.
 
 ---
 
