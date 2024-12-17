@@ -167,7 +167,8 @@ Con esta configuración, hemos logrado crear un entorno robusto y fácil de mant
 
 
 # RESULTADO FINAL
-![imagen](https://github.com/user-attachments/assets/f0f9b986-55d3-4b71-9ace-c0579304ce72)
+![imagen](https://github.com/user-attachments/assets/c966f6ad-f5e6-47ad-8e26-bef259436ed8)
+
 
 # Después de poner las credenciales: 
 ![imagen](https://github.com/user-attachments/assets/66c3294a-6ca5-41d6-a1dc-026c8f474e1f)
