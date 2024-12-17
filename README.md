@@ -17,9 +17,9 @@
 Este proyecto consiste en crear un entorno virtualizado para instalar y configurar **OwnCloud**, una plataforma de almacenamiento y colaboración en la nube. La infraestructura estará compuesta por varias máquinas virtuales gestionadas con **Vagrant**, cada una con un rol específico:
 
 - **Balanceador de carga**
-- **Base de datos**
 - **Servidor NFS**
 - **Servidores web**
+- **Base de datos**
 
 Se emplearán **scripts de configuración automatizada** para garantizar que la instalación sea consistente y reproducible.
 
